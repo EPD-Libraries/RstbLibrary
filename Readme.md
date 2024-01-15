@@ -1,5 +1,7 @@
 # Resource Size Table Library
 
+Simple Resource Size Table (RSTB/RESTBL) IO library written in modern C#
+
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/EPD-Libraries/RstbLibrary/blob/master/License.md) [![Downloads](https://img.shields.io/github/downloads/EPD-Libraries/RstbLibrary/total)](https://github.com/EPD-Libraries/RstbLibrary/releases)
 
 ## Usage
