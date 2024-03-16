@@ -2,7 +2,7 @@
 
 public readonly struct HashEntry
 {
-    public const int Size = 8;
+    public const int SIZE = 8;
 
     public readonly uint Hash;
     public readonly uint Value;

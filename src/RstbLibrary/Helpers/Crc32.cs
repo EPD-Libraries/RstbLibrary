@@ -2,9 +2,9 @@
 
 public class Crc32
 {
-    private const uint Seed = 0xFFFFFFFF;
+    private const uint SEED = 0xFFFFFFFF;
 
-    private static readonly uint[] Table = [
+    private static readonly uint[] _table = [
         0x00000000,
         0x77073096,
         0xEE0E612C,
@@ -267,12 +267,12 @@ public class Crc32
     public static uint Compute(ReadOnlySpan<char> data, int offset, int length)
     {
         uint crc = 0;
-        crc ^= Seed;
+        crc ^= SEED;
         while (--length >= 0) {
-            crc = Table[(crc ^ data[offset++]) & 0xFF] ^ (crc >> 8);
+            crc = _table[(crc ^ data[offset++]) & 0xFF] ^ (crc >> 8);
         }
 
-        crc ^= Seed;
+        crc ^= SEED;
         return crc;
     }
 
@@ -280,12 +280,12 @@ public class Crc32
     public static uint Compute(ReadOnlySpan<byte> data, int offset, int length)
     {
         uint crc = 0;
-        crc ^= Seed;
+        crc ^= SEED;
         while (--length >= 0) {
-            crc = Table[(crc ^ data[offset++]) & 0xFF] ^ (crc >> 8);
+            crc = _table[(crc ^ data[offset++]) & 0xFF] ^ (crc >> 8);
         }
 
-        crc ^= Seed;
+        crc ^= SEED;
         return crc;
     }
 }

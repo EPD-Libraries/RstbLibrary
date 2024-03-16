@@ -39,7 +39,7 @@ public readonly ref struct ImmutableRstb
 
     private static void Read(ref RevrsReader reader, ref RstbHeader header, out ImmutableHashTable hashTable, out ImmutableOverflowTable overflowTable)
     {
-        int hashTableSize = header.HashTableCount * HashEntry.Size;
+        int hashTableSize = header.HashTableCount * HashEntry.SIZE;
         int overflowTableSize = header.OverflowTableCount * FIXED_OVERFLOW_ENTRY_SIZE;
         int expectedFileSize = RstbHeader.SIZE + hashTableSize + overflowTableSize;
 
@@ -48,7 +48,7 @@ public readonly ref struct ImmutableRstb
                 .ReverseEndianness((ushort)reader.Endianness);
             reader.Reverse<RstbHeader, RstbHeader.Reverser>(0);
 
-            hashTableSize = header.HashTableCount * HashEntry.Size;
+            hashTableSize = header.HashTableCount * HashEntry.SIZE;
             overflowTableSize = header.OverflowTableCount * FIXED_OVERFLOW_ENTRY_SIZE;
             expectedFileSize = RstbHeader.SIZE + hashTableSize + overflowTableSize;
 
@@ -70,7 +70,7 @@ public readonly ref struct ImmutableRstb
 
     private static void Read(ref RevrsReader reader, ref RestblHeader header, out ImmutableHashTable hashTable, out ImmutableOverflowTable overflowTable)
     {
-        int hashTableSize = header.HashTableCount * HashEntry.Size;
+        int hashTableSize = header.HashTableCount * HashEntry.SIZE;
         int overflowTableSize = header.OverflowTableCount * (header.OverflowKeySize + sizeof(uint));
         int expectedFileSize = RestblHeader.SIZE + hashTableSize + overflowTableSize;
 
@@ -79,7 +79,7 @@ public readonly ref struct ImmutableRstb
                 .ReverseEndianness((ushort)reader.Endianness);
             reader.Reverse<RestblHeader, RestblHeader.Reverser>(0);
 
-            hashTableSize = header.HashTableCount * HashEntry.Size;
+            hashTableSize = header.HashTableCount * HashEntry.SIZE;
             overflowTableSize = header.OverflowTableCount * (header.OverflowKeySize + sizeof(uint));
             expectedFileSize = RestblHeader.SIZE + hashTableSize + overflowTableSize;
 
