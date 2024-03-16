@@ -37,7 +37,7 @@ public sealed class Rstb
 
     public Rstb()
     {
-        
+
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -63,7 +63,7 @@ public sealed class Rstb
 
         RevrsWriter writer = new(stream, endianness.Value);
         if (optimize) {
-            OptimizeOverflowTable();    
+            OptimizeOverflowTable();
         }
 
         switch (version) {
@@ -110,8 +110,12 @@ public sealed class Rstb
 
     private void WriteBinaryDynamic(in RevrsWriter writer)
     {
-        int overflowKeySize = OverflowTable.Keys.Max(x => x.Length + 1);
-        overflowKeySize += overflowKeySize.AlignUp(2);
+        int overflowKeySize = 0;
+
+        if (OverflowTable.Count > 0) {
+            overflowKeySize = OverflowTable.Keys.Max(x => x.Length + 1);
+            overflowKeySize += overflowKeySize.AlignUp(2);
+        }
 
         writer.Write("RESTBL"u8);
         writer.Write(Version);
