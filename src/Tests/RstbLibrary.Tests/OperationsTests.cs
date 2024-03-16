@@ -47,4 +47,18 @@ public class OperationsTests
         restbl.HashTable.Count.Should().Be(379715);
         restbl.OverflowTable.Count.Should().Be(32);
     }
+
+    [Fact]
+    public void ValidateWriteEmptyOverflowRestbl()
+    {
+        Rstb restbl = Rstb.FromBinary(Assets.RestblData);
+        restbl.OverflowTable.Clear();
+        byte[] restblData = restbl.ToBinary(Endianness.Little, RstbVersion.Dynamic);
+
+        restbl = Rstb.FromBinary(restblData);
+        restbl.Version.Should().Be(RstbVersion.Dynamic);
+        restbl.Endianness.Should().Be(Endianness.Little);
+        restbl.HashTable.Count.Should().Be(379715);
+        restbl.OverflowTable.Count.Should().Be(0);
+    }
 }
