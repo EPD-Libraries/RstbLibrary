@@ -68,11 +68,11 @@ public sealed class Rstb
 
         switch (version) {
             case RstbVersion.Fixed: {
-                WriteBinaryFixed(writer);
+                WriteBinaryFixed(ref writer);
                 break;
             }
             case RstbVersion.Dynamic: {
-                WriteBinaryDynamic(writer);
+                WriteBinaryDynamic(ref writer);
                 break;
             }
             default: {
@@ -83,7 +83,7 @@ public sealed class Rstb
         }
     }
 
-    private void WriteBinaryFixed(in RevrsWriter writer)
+    private void WriteBinaryFixed(ref RevrsWriter writer)
     {
         writer.Write("RSTB"u8);
         writer.Write(HashTable.Count);
@@ -108,7 +108,7 @@ public sealed class Rstb
         }
     }
 
-    private void WriteBinaryDynamic(in RevrsWriter writer)
+    private void WriteBinaryDynamic(ref RevrsWriter writer)
     {
         int overflowKeySize = 0;
 
